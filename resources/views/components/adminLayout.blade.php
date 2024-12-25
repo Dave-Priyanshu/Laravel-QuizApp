@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.users.index') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm1-15h-2v4h2v-4zm0 6h-2v2h2v-2z"/>
                             </svg>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.categories.index') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm-5-14h10v2h-10v-2zm0 4h10v2h-10v-2zm0 4h10v2h-10v-2z"/>
                             </svg>

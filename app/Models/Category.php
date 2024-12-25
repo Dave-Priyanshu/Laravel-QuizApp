@@ -11,4 +11,8 @@ class Category extends Model
 
     // Allow mass assignment for the 'name' field
     protected $fillable = ['name'];
+
+    public function questions(){
+        return $this->hasMany(Question::class);
+    }
 }
