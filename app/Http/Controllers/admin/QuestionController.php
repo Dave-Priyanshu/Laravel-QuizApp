@@ -27,11 +27,20 @@ class QuestionController extends Controller
     // Store a new question and its answers
     public function store(Request $request)
     {
+        // Normalize checkbox values
+        $answers = array_map(function ($answer) {
+            $answer['is_correct'] = isset($answer['is_correct']) ? 1 : 0;
+            return $answer;
+        }, $request->answers);
+
+        $request->merge(['answers' => $answers]);
+
+        // Validate the request
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'question_text' => 'required|string',
             'answers.*.answer_text' => 'required|string',
-            'answers.*.is_correct' => 'required|boolean',
+            'answers.*.is_correct' => 'nullable|in:0,1', // Accept 0 or 1 for is_correct
         ]);
 
         // Create the question
@@ -63,11 +72,20 @@ class QuestionController extends Controller
     // Update an existing question
     public function update(Request $request, $id)
     {
+        // Normalize checkbox values
+        $answers = array_map(function ($answer) {
+            $answer['is_correct'] = isset($answer['is_correct']) ? 1 : 0;
+            return $answer;
+        }, $request->answers);
+
+        $request->merge(['answers' => $answers]);
+
+        // Validate the request
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'question_text' => 'required|string',
             'answers.*.answer_text' => 'required|string',
-            'answers.*.is_correct' => 'required|boolean',
+            'answers.*.is_correct' => 'nullable|in:0,1', // Accept 0 or 1 for is_correct
         ]);
 
         $question = Question::findOrFail($id);

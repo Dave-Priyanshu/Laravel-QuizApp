@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\UserController;
+
+use App\Http\Controllers\admin\QuestionController;
+use App\Http\Controllers\admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 //Home page Route

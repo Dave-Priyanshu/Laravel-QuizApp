@@ -10,7 +10,7 @@
      <!-- Progress Bar -->
      <div class="relative mb-6">
          <div class="relative h-5 bg-white rounded-full overflow-hidden">
-             <div id="progress-bar" class="h-full bg-laravel transition-all duration-500 ease-in-out rounded-full"></div>
+             <div id="progress-bar" class="h-full bg-login transition-all duration-500 ease-in-out rounded-full"></div>
              <div class="absolute inset-0 flex items-center justify-between px-2 text-xs font-semibold text-white">
                  <span class="text-black flex-shrink-0">0%</span>
                  <span class="text-black flex-shrink-0">100%</span>
@@ -65,7 +65,7 @@
          <div class="mb-6">
              <button
                  type="submit"
-                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black transition duration-300 flex items-center"
+                 class="bg-login text-white rounded py-2 px-4 hover:bg-black transition duration-300 flex items-center"
              >
                  <i class="fa fa-user-plus mr-2"></i> Sign In
              </button>

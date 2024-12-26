@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.questions.index') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 4c-.55 0-1 .45-1 1v3h2v-3c0-.55-.45-1-1-1z"/>
                             </svg>
