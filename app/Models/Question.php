@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillable = ['category_id','question_text'];
+    protected $fillable = ['category_id','question_text','question_type'];
 
     public function category(){
         return $this->belongsTo(Category::class);

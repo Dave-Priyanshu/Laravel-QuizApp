@@ -1,5 +1,8 @@
     <!-- /var/www/html/laravel/Demo-app/resources/views/admin/dashboard.blade.php -->
     <x-adminLayout>
+        @slot('title')
+            Admin Panel
+        @endslot
         <div class="container mx-auto p-10 mt-10 max-w-7xl">
             <h1 class="text-4xl font-bold text-blue-800 mb-8 text-center">Welcome to the Admin Dashboard</h1>
 

@@ -5,10 +5,20 @@ use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\admin\QuestionController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\user\UserPanelController;
 use Illuminate\Support\Facades\Route;
 
-//Home page Route
-// Route::get('/', function () {return view('index');})->name('home')->middleware('auth');
+// Home page route
+Route::get('/', function () {
+    if (auth()->check()) {
+        // Redirect authenticated users to their respective dashboards
+        return redirect()->route(auth()->user()->is_admin ? 'admin.dashboard' : 'users.panel.home');
+    }
+
+    // Return the landing page if the user is not authenticated
+    return view('users.login');
+})->name('home');
+
 
 
 //show login form
@@ -23,7 +33,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Categories Route
-Route::middleware(['auth','admin'])->group(function(){
+Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('/',function(){return view('admin.dashboard');})->name('admin.dashboard');
     Route::get('/categories',[CategoryController::class,'index'])->name('admin.categories.index');
     Route::get('/categories/create',[CategoryController::class,'create'])->name('admin.categories.create');
@@ -61,6 +71,15 @@ Route::middleware(['auth','admin'])->group(function(){
     // Delete a specific question
     Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
     
-
 });
+
+// Frontend related routes for user
+Route::middleware(['auth'])->prefix('users')->group(function(){
+    // display all the categories
+    Route::get('/',[UserPanelController::class,'index'])->name('users.panel.home');
+
+    // show que for sepcific category
+    Route::get('category/{category}',[UserPanelController::class,'showQuestions'])->name('users.panel.questions');
+});
+
 

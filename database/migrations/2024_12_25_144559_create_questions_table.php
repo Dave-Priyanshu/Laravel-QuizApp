@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('question_text');
+            $table->enum('question_type', ['multiple_choice', 'true_false'])->default('multiple_choice'); // Add question_type
             $table->timestamps();
         });
     }

@@ -26,54 +26,46 @@ class QuestionController extends Controller
 
     // Store a new question and its answers
     public function store(Request $request)
-    {
-        // dd($request->all());
-        $validated  = $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'question_text' => 'required|string',
-            'question_type' => 'required|string|in:multiple_choice,true_false',
-            'correct_answer' => 'required_if:question_type,true_false|in:true,false',
-            'answers.*.answer_text' => 'required_if:question_type,multiple_choice|string',
-            'answers.*.is_correct' => 'nullable|in:on',
-            ]);
-            
-        
-        // Normalize 'is_correct' field
-        $answers = array_map(function ($answer) {
-            $answer['is_correct'] = isset($answer['is_correct']) && $answer['is_correct'] === 'on' ? 1 : 0;
-            return $answer;
-        }, $request->input('answers', []));
+{
+    $request->validate([
+        'category_id' => 'required|exists:categories,id',
+        'question_text' => 'required|string',
+        'question_type' => 'required|string|in:multiple_choice,true_false',
+        'correct_answer' => 'required_if:question_type,true_false|in:true,false',
+        'answers.*.answer_text' => 'required_if:question_type,multiple_choice|string',
+        'answers.*.is_correct' => 'nullable|in:0,1',
+    ]);
 
-        // Create the question
-        $question = Question::create([
-            'category_id' => $validated['category_id'],
-            'question_text' => $validated['question_text'],
-            'question_type' => $validated['question_type'],
-        ]);
-            
-        
-            // Save the answers based on the question type
-        if ($validated['question_type'] === 'multiple_choice') {
-            foreach ($answers as $answer) {
-                $question->answers()->create([
-                    'answer_text' => $answer['answer_text'],
-                    'is_correct' => $answer['is_correct'],
-                ]);
-            }
-        } elseif ($validated['question_type'] === 'true_false') {
-            $question->answers()->create([
-                'answer_text' => $validated['correct_answer'] === 'true' ? 'True' : 'False',
-                'is_correct' => true,
-            ]);
-            $question->answers()->create([
-                'answer_text' => $validated['correct_answer'] === 'false' ? 'True' : 'False',
-                'is_correct' => false,
+    // Create the question
+    $question = Question::create([
+        'category_id' => $request->category_id,
+        'question_text' => $request->question_text,
+        'question_type' => $request->question_type,
+    ]);
+
+    // Handle answers based on the question type
+    if ($request->question_type === 'true_false') {
+        // Store True/False answers
+        $answers = [
+            ['question_id' => $question->id, 'answer_text' => 'True', 'is_correct' => $request->correct_answer === 'true' ? 1 : 0],
+            ['question_id' => $question->id, 'answer_text' => 'False', 'is_correct' => $request->correct_answer === 'false' ? 1 : 0],
+        ];
+        foreach ($answers as $answer) {
+            Answer::create($answer);
+        }
+    } elseif ($request->question_type === 'multiple_choice') {
+        // Store multiple-choice answers
+        foreach ($request->answers as $answer) {
+            Answer::create([
+                'question_id' => $question->id,
+                'answer_text' => $answer['answer_text'],
+                'is_correct' => $answer['is_correct'] ?? 0,
             ]);
         }
-
-        return redirect()->route('admin.questions.index')->with('success', 'Question Created Successfully');
     }
 
+    return redirect()->route('admin.questions.index')->with('success', 'Question Created Successfully');
+}
 
     // Show the form to edit an existing question
     public function edit($id)
