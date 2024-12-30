@@ -1,11 +1,26 @@
 
-```markdown
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 # Quiz Game
+
+<p align="center">
+  <a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+  </a>
+</p>
 
 Welcome to the **Quiz Game** repository! 🎮
 
 This is a fun and interactive quiz platform where users can take quizzes, track their performance, and challenge themselves with different quiz categories and difficulty levels.
+
+## Technologies Used 🚀
+
+<p align="center">
+  <a href="https://code.visualstudio.com/" target="_blank">
+    <img src="https://raw.githubusercontent.com/Microsoft/vscode/main/resources/web/vscode-logo-128.png" width="100" alt="VS Code Logo">
+  </a>
+  <a href="https://laravel.com/docs/10.x/blade" target="_blank">
+    <img src="https://laravel.com/img/logomark.min.svg" width="100" alt="Blade Template Logo">
+  </a>
+</p>
 
 ## Features 🎉
 
