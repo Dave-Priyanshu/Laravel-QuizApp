@@ -56,6 +56,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     // delete a specifc user
     Route::delete('/admin/users/{user}',[UserController::class,'destroy'])->name('admin.users.destroy');
 
+    // Toggle admin
+    Route::patch('/admin/users/{user}/toggle', [UserController::class, 'toggleAdmin'])->name('admin.toggleAdmin');
+
 
     // Questions related routes
     Route::get('/admin/questions', [QuestionController::class, 'index'])->name('admin.questions.index');

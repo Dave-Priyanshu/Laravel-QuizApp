@@ -13,6 +13,14 @@ class UserController extends Controller
         return view('admin.users.index',compact('users'));
     }
 
+    public function toggleAdmin(User $user){
+
+        $user->role = $user->role === 'admin' ? 'user' : 'admin';
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('message','User admin status updated successfully.');
+    }
+
     public function edit(User $user){
         return view('admin.users.edit',compact('user'));
     }
