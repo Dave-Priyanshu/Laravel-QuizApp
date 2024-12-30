@@ -26,11 +26,11 @@
             <nav>
                 <ul class="space-y-4">
                     <li>
-                        <a href="{{ route('users.panel.home') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('user.welcome.page') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0l8 6h-2v12h-12v-12h-2l8-6zm0 12h2v8h-2v-8zm-4 0h2v8h-2v-8z"/>
                             </svg>
-                            Quiz Dashboard
+                            Dashboard
                         </a>
                     </li>
                     {{-- <li>
@@ -58,7 +58,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('users.panel.quiz') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm-5-14h10v2h-10v-2zm0 4h10v2h-10v-2zm0 4h10v2h-10v-2z"/>
                             </svg>
@@ -80,7 +80,7 @@
                         
                         <!-- User Name and Dashboard Text -->
                         <div class="text-lg font-semibold text-gray-800">
-                            <a href="{{ route('users.panel.home') }}"><span class="block text-xl font-bold capitalize">{{ auth()->user()->name }}'s Dashboard</span></a>
+                            <a href="{{ route('users.panel.quiz') }}"><span class="block text-xl font-bold capitalize">{{ auth()->user()->name }}'s Dashboard</span></a>
                         </div>
                     </div>
             

@@ -7,11 +7,11 @@
     <div class="container mx-auto p-10 mt-10 max-w-7xl">
         
         <h1 class="text-4xl font-bold text-blue-800 mb-8 text-center">Select Category to Take the Quiz</h1>
-        @if(session('score'))
+        {{-- @if(session('score'))
         <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-6">
             <p class="text-center text-xl">Your Score: {{ session('score') }}%</p>
         </div>
-    @endif
+    @endif --}}
 
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

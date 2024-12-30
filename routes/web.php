@@ -79,7 +79,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 // Frontend related routes for user
 Route::middleware(['auth'])->prefix('users')->group(function(){
     // display all the categories
-    Route::get('/',[UserPanelController::class,'index'])->name('users.panel.home');
+    Route::get('/',function(){ return view('users.welcome');})->name('user.welcome.page');
+    Route::get('/quiz',[UserPanelController::class,'index'])->name('users.panel.quiz');
 
     // show que for sepcific category
     Route::get('category/{category}',[UserPanelController::class,'showQuestions'])->name('users.panel.questions');
@@ -92,6 +93,10 @@ Route::middleware(['auth'])->prefix('users')->group(function(){
     Route::get('/profile', [UserPanelController::class, 'editProfile'])->name('users.panel.profile.edit');
     Route::post('/profile', [UserPanelController::class, 'updateProfile'])->name('users.panel.profile.update');
     // Route::post('/profile/remove-picture', [UserController::class, 'removeProfilePicture'])->name('users.panel.profile.removePicture');
+
+    // Route::get('/welcomePage',function(){
+    //     return view('users.welcome');
+    // })->name('user.welcome.page');
 
 });
 
