@@ -74,10 +74,6 @@ Visit `http://localhost:8000` in your browser to start using the application.
 
 We welcome contributions! If you'd like to contribute to the development of **Quiz Game**, feel free to fork the repository and create a pull request with your changes.
 
-## License 📜
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact 📧
 
 If you have any questions, feel free to reach out to me at:  
