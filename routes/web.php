@@ -83,6 +83,16 @@ Route::middleware(['auth'])->prefix('users')->group(function(){
 
     // show que for sepcific category
     Route::get('category/{category}',[UserPanelController::class,'showQuestions'])->name('users.panel.questions');
+
+    Route::post('/submit-quiz/{categoryId}',[UserPanelController::class,'storeAnswers'])->name('users.panel.storeAnswers');
+
+    Route::get('/analytics', [UserPanelController::class, 'analytics'])->name('users.panel.analytics');
+
+    // update user profile
+    Route::get('/profile', [UserPanelController::class, 'editProfile'])->name('users.panel.profile.edit');
+    Route::post('/profile', [UserPanelController::class, 'updateProfile'])->name('users.panel.profile.update');
+    // Route::post('/profile/remove-picture', [UserController::class, 'removeProfilePicture'])->name('users.panel.profile.removePicture');
+
 });
 
 
