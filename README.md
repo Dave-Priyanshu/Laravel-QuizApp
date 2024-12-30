@@ -11,17 +11,6 @@ Welcome to the **Quiz Game** repository! 🎮
 
 This is a fun and interactive quiz platform where users can take quizzes, track their performance, and challenge themselves with different quiz categories and difficulty levels.
 
-## Technologies Used 🚀
-
-<p align="center">
-  <a href="https://code.visualstudio.com/" target="_blank">
-    <img src="https://raw.githubusercontent.com/Microsoft/vscode/main/resources/web/vscode-logo-128.png" width="100" alt="VS Code Logo">
-  </a>
-  <a href="https://laravel.com/docs/10.x/blade" target="_blank">
-    <img src="https://laravel.com/img/logomark.min.svg" width="100" alt="Blade Template Logo">
-  </a>
-</p>
-
 ## Features 🎉
 
 ### ✅ Features You Can Enjoy:
