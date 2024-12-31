@@ -2,7 +2,7 @@
 
 <x-userLayout>
     
-        <h1 class="text-4xl font-bold text-blue-800 mb-6 text-center">Welcome, {{ auth()->user()->name }}!</h1>
+        <h1 class="text-4xl font-bold text-blue-800 mb-6 text-center capitalize">Welcome, {{ auth()->user()->name }}!</h1>
         
         <!-- Welcome Message -->
         <p class="text-xl text-gray-700 mb-6">Welcome to your Quiz Dashboard! 🎉</p>

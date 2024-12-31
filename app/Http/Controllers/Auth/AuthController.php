@@ -73,4 +73,46 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+
+    // admin profile update
+    public function editProfile(){
+        $user = auth()->user();
+        return view('admin.profile.edit', compact('user'));
+    }
+
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        // Validate the input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'bio' => 'nullable|string|max:500',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        // Handle profile picture upload
+        if ($request->hasFile('profile_picture')) {
+            $profilePicture = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->profile_picture = $profilePicture;
+        }
+
+        // Update user information
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->bio = $request->bio;
+
+        // Update password if provided
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.panel.profile.edit')->with('success', 'Profile updated successfully.');
+    }
 }

@@ -73,6 +73,10 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     
     // Delete a specific question
     Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
+
+    // update admin profile
+    Route::get('/admin-profile', [AuthController::class, 'editProfile'])->name('admin.panel.profile.edit');
+    Route::post('/admin-profile', [AuthController::class, 'updateProfile'])->name('admin.panel.profile.update');
     
 });
 

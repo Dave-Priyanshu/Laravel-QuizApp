@@ -20,10 +20,6 @@ class UserPanelController extends Controller
         $categories = Category::all();
         return view('users.home',compact('categories'));
     }
-    // public function sendName(){
-    //     $categories = Category::where('cate')
-    //     return v
-    // }
 
     public function showQuestions($categoryId){
         // Eager load answers with questions to avoid N+1 query problems
@@ -75,7 +71,7 @@ class UserPanelController extends Controller
             'score'=> $score
         ]);
 
-        return redirect()->route('users.panel.home')->with('score', $score);
+        return redirect()->route('users.panel.quiz')->with('score', $score);
     }
 
     public function analytics()
