@@ -13,7 +13,7 @@ class QuestionController extends Controller
     // Display a list of questions
     public function index()
     {
-        $questions = Question::with('category')->get(); // Get questions with their related category
+        $questions = Question::with('category')->paginate(12); // Get questions with their related category
         return view('admin.questions.index', compact('questions'));
     }
 

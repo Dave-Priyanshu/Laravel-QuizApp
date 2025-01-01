@@ -9,7 +9,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::all();
+        $users = User::paginate(10);
         return view('admin.users.index',compact('users'));
     }
 
@@ -27,6 +27,13 @@ class UserController extends Controller
 
     public function update(Request $request, User $user){
 
+        $user = User::findOrFail($user->id);
+
+        // check if the user is super admin
+        if($user->isSuperAdmin()){
+            return redirect()->route('admin.users.index')->with('error','Cannot update super admin');
+        }
+
         $request->validate([
             'name'=> 'required|string|max:255',
             'email'=>'required|email|max:255|unique:users,email,' . $user->id,
@@ -38,6 +45,13 @@ class UserController extends Controller
     }
 
     public function destroy(User $user){
+
+        $user = User::findOrFail($user->id);
+
+        // check if the user is super adin
+        if($user->isSuperAdmin()){
+            return redirect()->route('admin.users.index')->with('error','Cannot delete super admin');
+        }
         $user->delete();
         return redirect()->route('admin.users.index')->with('success','User Deleted Successfully');
     }

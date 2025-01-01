@@ -17,13 +17,13 @@ use function Ramsey\Uuid\v1;
 class UserPanelController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+        $categories = Category::paginate(9);
         return view('users.home',compact('categories'));
     }
 
     public function showQuestions($categoryId){
         // Eager load answers with questions to avoid N+1 query problems
-        $questions = Question::with('answers')->where('category_id', $categoryId)->get();
+        $questions = Question::with('answers')->where('category_id', $categoryId)->paginate(5);
         // dd($questions);
         $category = Category::where('id',$categoryId)->first();
         return view('users.questions',compact('questions','category'));

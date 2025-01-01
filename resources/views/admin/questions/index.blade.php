@@ -40,4 +40,8 @@
             </table>
         </div>
     </div>
+
+       <div>
+        {{ $questions->links() }}
+    </div>
 </x-adminLayout>

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (auth()->check()) {
         // Redirect authenticated users to their respective dashboards
-        return redirect()->route(auth()->user()->is_admin ? 'admin.dashboard' : 'users.panel.home');
+        return redirect()->route(auth()->user()->is_admin ? 'admin.dashboard' : 'user.welcome.page');
     }
 
     // Return the landing page if the user is not authenticated

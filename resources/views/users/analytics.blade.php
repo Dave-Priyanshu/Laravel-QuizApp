@@ -1,5 +1,5 @@
 <x-userLayout>
-    <div class="container mx-auto p-10 mt-10 max-w-7xl">
+    <div class="container mx-auto p-10 max-w-7xl">
         <h1 class="text-4xl font-bold text-blue-800 mb-8 text-center">Quiz Analytics</h1>
 
         <table class="min-w-full bg-white border border-gray-200">

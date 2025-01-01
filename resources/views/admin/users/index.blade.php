@@ -65,4 +65,8 @@
             </table>
         </div>
     </div>
+
+    <div>
+        {{ $users->links() }}
+    </div>
 </x-adminLayout>

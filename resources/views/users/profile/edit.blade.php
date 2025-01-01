@@ -65,6 +65,11 @@
                     @error('profile_picture')
                         <span class="text-sm text-red-600 mt-2">{{ $message }}</span>
                     @enderror
+
+                     <!-- Profile Picture Guidelines -->
+                    <p class="text-sm text-gray-500 mt-2">
+                        The profile picture should be in JPEG, PNG, or JPG format and no larger than 2MB.
+                    </p>
                 </div>
 
                 <!-- Password Fields -->

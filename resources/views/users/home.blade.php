@@ -4,7 +4,7 @@
         User Panel
     @endslot --}}
 
-    <div class="container mx-auto p-10 mt-10 max-w-7xl">
+    <div class="container mx-auto p-10 max-w-7xl">
         
         <h1 class="text-4xl font-bold text-blue-800 mb-8 text-center">Select Category to Take the Quiz</h1>
         {{-- @if(session('score'))
@@ -27,5 +27,9 @@
                 </div>
             @endforeach
         </div>
+    </div>
+
+    <div>
+        {{ $categories->links() }}
     </div>
 </x-userLayout>
