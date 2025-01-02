@@ -12,7 +12,6 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
@@ -33,22 +32,27 @@
         <title>Quiz Game | Learn, Play, Win!</title>
     </head>
     <body class="mb-48 bg-background">
-        <nav class="flex justify-between items-center bg-white_color drop-shadow-xl py-4 px-8">
+        <nav id="navbar" class="flex flex-wrap justify-between items-center bg-white drop-shadow-xl py-4 px-6 md:px-8">
             <div class="flex items-center space-x-4">
                 <a href="/">
-                    <img class="w-24" src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" />
+                    <img class="w-20 md:w-24" src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" />
                 </a>
-                <span class="text-xl font-bold text-laravel">Learn, Play, Win!</span>
+                <span class="text-lg md:text-xl font-bold text-laravel">Learn, Play, Win!</span>
             </div>
-            <ul class="flex space-x-6 text-lg">
+            <button 
+                class="block md:hidden text-laravel focus:outline-none" 
+                id="menu-toggle"
+                aria-label="Toggle navigation"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="menu" class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 text-lg">
                 @auth
                 <li>
-                    <span class="font-bold uppercase text-fontCol">
-                        Welcome, {{ auth()->user()->name }}
-                    </span>
+                    <span class="font-bold uppercase text-fontCol">Welcome, {{ auth()->user()->name }}</span>
                 </li>
                 <li>
-                    <form action="{{ route('logout') }}" class="inline" method="POST">
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit" class="text-laravel hover:underline">
                             <i class="fa-solid fa-door-closed"></i> Logout
@@ -71,6 +75,13 @@
         </nav>
 
         <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu');
+
+            menuToggle.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
             window.addEventListener("scroll", function() {
                 var navbar = document.getElementById("navbar");
                 if (window.scrollY > 50) {
@@ -86,21 +97,30 @@
         </main>
     
         <footer
-            class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold text-white h-16 mt-24 opacity-90 md:justify-center"
+            class="fixed bottom-0 left-0 w-full flex flex-wrap items-center justify-start  text-white h-16 mt-24 opacity-90 md:justify-center"
             style="background: linear-gradient(to right, #1E3A8A, #3B82F6);"
         >
             <p class="ml-1">Copyright &copy; 2024, All Rights Reserved</p>
-
-            {{-- <a
-                href="/listings/create"
-                class="absolute top-1/3 right-10 bg-blue-700 text-white py-2 px-5 hover:bg-blue-600"
-            >
-                Create Quiz
-            </a> --}}
             <div class="absolute bottom-3 left-10 flex space-x-4 text-2xl">
                 <a href="https://github.com/Dave-Priyanshu" class="hover:text-gray-200">
                     <i class="fa-brands fa-github"></i>
-                </a>
+                </a><footer
+                class="fixed bottom-0 left-0 w-full flex flex-wrap items-center justify-start  text-white h-16 mt-24 opacity-90 md:justify-center"
+                style="background: linear-gradient(to right, #1E3A8A, #3B82F6);"
+            >
+                <p class="ml-1">Copyright &copy; 2024, All Rights Reserved</p>
+                <div class="absolute bottom-3 left-10 flex space-x-4 text-2xl">
+                    <a href="https://github.com/Dave-Priyanshu" class="hover:text-gray-200">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="hover:text-gray-200">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:priyanshutest2001@gmail.com" class="hover:text-gray-200">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+            </footer>
                 <a href="#" class="hover:text-gray-200">
                     <i class="fa-brands fa-linkedin"></i>
                 </a>

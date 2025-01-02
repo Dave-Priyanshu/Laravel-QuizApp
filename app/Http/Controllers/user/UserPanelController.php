@@ -16,10 +16,28 @@ use function Ramsey\Uuid\v1;
 
 class UserPanelController extends Controller
 {
-    public function index(){
-        $categories = Category::paginate(9);
-        return view('users.home',compact('categories'));
+    public function index(Request $request)
+    {
+        $query = Category::query();
+
+        if ($request->has('question_type')) {
+            $type = $request->input('question_type');
+            if ($type === 'multiple_choice') {
+                $query->whereHas('questions', function ($q) {
+                    $q->where('question_type', 'multiple_choice');
+                });
+            } elseif ($type === 'true_false') {
+                $query->whereHas('questions', function ($q) {
+                    $q->where('question_type', 'true_false');
+                });
+            }
+        }
+
+        $categories = $query->paginate(9);
+
+        return view('users.home', compact('categories'));
     }
+
 
     public function showQuestions($categoryId){
         // Eager load answers with questions to avoid N+1 query problems
@@ -31,18 +49,16 @@ class UserPanelController extends Controller
 
     public function storeAnswers(Request $request, $categoryId)
     {
-        // dd($request->all());
         $user = auth()->user();
         $totalCorrect = 0;
 
         // Loop through all the questions and store the user's answers
         foreach ($request->input('question') as $questionId => $answerId) {
-
             // Fetch the answer and ensure it belongs to the correct question
             $answer = Answer::where('id', $answerId)
                             ->where('question_id', $questionId)
                             ->first();
-            
+
             if ($answer) {
                 // Store the user's answer in the database
                 UserAnswer::create([
@@ -58,11 +74,11 @@ class UserPanelController extends Controller
             }
         }
 
-        // Calculate the score and display it to the user
+        // Calculate the score
         $totalQuestions = count($request->input('question'));
         $score = ($totalCorrect / $totalQuestions) * 100;
 
-        // save analytics
+        // Save analytics
         UserQuizAnalytics::create([
             'user_id'=> $user->id,
             'category_id'=> $categoryId,
@@ -71,8 +87,15 @@ class UserPanelController extends Controller
             'score'=> $score
         ]);
 
-        return redirect()->route('users.panel.quiz')->with('score', $score);
+        // Flash the score and the additional details to the session
+        session()->flash('score', $score);
+        session()->flash('message', 'Your quiz has been submitted!');
+        session()->flash('totalQuestions', $totalQuestions);
+        session()->flash('correctAnswers', $totalCorrect);
+
+        return redirect()->route('users.panel.quiz');
     }
+
 
     public function analytics()
     {
@@ -123,25 +146,56 @@ class UserPanelController extends Controller
 
         return redirect()->route('users.panel.profile.edit')->with('success', 'Profile updated successfully.');
     }
-    // public function removeProfilePicture()
-    // {
-    //     $user = auth()->user();
 
-    //     // Check if the user has a profile picture
-    //     if ($user->profile_picture) {
-    //         // Delete the image from storage
-    //         Storage::delete('public/' . $user->profile_picture);
+    public function timedQuiz()
+    {
+        $questions = Question::inRandomOrder()->limit(10)->get();
+        return view('users.timed_quiz', compact('questions'));
+    }
 
-    //         // Remove the profile picture from the user record
-    //         $user->profile_picture = null;
-    //         $user->save();
+    // quiz submission
+    public function storeTimedAnswers(Request $request){
+        $user = auth()->user();
+        $totalCorrect = 0;
 
-    //         // Return a success message
-    //         return redirect()->route('users.panel.profile.edit')->with('success', 'Profile picture removed successfully!');
-    //     }
+        // loop through the questions and store user answersss
+        foreach($request->input('questions') as $questionId => $answerId){
+            $answer = Answer::where('id',$answerId)->where('question_id', $questionId)->first();
 
-    //     return redirect()->route('users.panel.profile.edit')->with('error', 'No profile picture found.');
-    // }
+            if($answer){
+                // store ans in db
+                UserAnswer::create([
+                    'user_id'=>$user->id,
+                    'question_id'=>$questionId,
+                    'answer_id'=>$answerId,
+                ]);
 
+                // check if the answer is right
+                if($answer->is_correct){
+                    $totalCorrect++;
+                }
+            }
 
+        }
+        $totalQuestions = count($request->input('questions'));
+        $score = ($totalCorrect/$totalQuestions)*100;
+
+        // Save analytics for the timed quiz
+        UserQuizAnalytics::create([
+            'user_id' => $user->id,
+            'category_id' => null, // You can adjust if you have categories for timed questions
+            'total_questions' => $totalQuestions,
+            'correct_answers' => $totalCorrect,
+            'score' => $score,
+       ]);
+       
+       session()->flash('score', $score);
+       session()->flash('message', 'Your timed quiz has been submitted!');
+       session()->flash('totalQuestions', $totalQuestions);
+       session()->flash('correctAnswers', $totalCorrect);
+   
+       return redirect()->route('users.panel.quiz');
+    }
+
+    
 }

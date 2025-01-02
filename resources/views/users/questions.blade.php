@@ -1,4 +1,3 @@
-<!-- resources/views/users/questions.blade.php -->
 <x-userLayout>
     @slot('title')
         Questions for {{ $category->name }}
@@ -23,8 +22,23 @@
                                     </label>
                                 @endforeach
                             </div>
+
+                            <!-- Deselect Button for the whole question -->
+                            <div class="text-left mt-4 font-bold">
+                                <button type="button" class="flex items-center text-blue-500 text-sm hover:text-blue-700" onclick="deselectAnswer('{{ $question->id }}')">
+                                    <!-- Cancel Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                    Deselect Answer
+                                </button>
+                            </div>
                         </div>
                     @endforeach
+                </div>
+
+                <div>
+                    {{ $questions->links() }}
                 </div>
 
                 <div class="text-center mt-8">
@@ -37,4 +51,14 @@
             <p class="text-lg text-gray-600 text-center mt-10">No questions are available for this category at the moment. Please check back later.</p>
         @endif
     </div>
+
+    <script>
+        function deselectAnswer(questionId) {
+            // Deselect the selected radio button for the given question
+            const radioButtons = document.querySelectorAll(`input[name="question[${questionId}]"]`);
+            radioButtons.forEach(button => {
+                button.checked = false;
+            });
+        }
+    </script>
 </x-userLayout>

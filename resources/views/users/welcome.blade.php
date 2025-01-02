@@ -15,9 +15,7 @@
             @if(auth()->user()->profile_picture)
                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="shadow-xl w-16 h-16 rounded-full object-cover mr-4">
             @else
-                <div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center mr-4">
-                    <i class="fa-solid fa-user text-gray-500"></i>
-                </div>
+               <img src="{{ asset('images/default-profile.png')}}" class="shadow-xl w-16 h-16 rounded-full object-cover mr-4" alt="">
             @endif
 
             <!-- User Info -->
@@ -31,14 +29,16 @@
         @if(auth()->user()->bio)
             <p class="text-lg text-gray-600">{{ auth()->user()->bio }}</p>
         @else
-            <p class="text-sm text-gray-500">You haven't added a bio yet. <a href="{{ route('users.panel.profile.edit') }}" class="font-semibold text-blue-700">Add your bio here</a>.</p>
+            <p class="text-sm text-gray-500">
+                <i class="fas fa-pencil-alt mr-2"></i>You haven't added a bio yet. <a href="{{ route('users.panel.profile.edit') }}" class="font-semibold text-blue-700">Add your bio here</a>.</p>
         @endif
 
         <!-- Profile Picture Section -->
         @if(auth()->user()->profile_picture)
             <p class="text-sm text-gray-500">Your profile picture is set! 🎉</p>
         @else
-            <p class="text-sm text-gray-500">You haven't uploaded a profile picture yet. <a href="{{ route('users.panel.profile.edit') }}" class="font-semibold text-blue-700">Add a profile picture here</a>.</p>
+            <p class="text-sm text-gray-500">
+                <i class="fas fa-camera mr-2"></i>You haven't uploaded a profile picture yet. <a href="{{ route('users.panel.profile.edit') }}" class="font-semibold text-blue-700">Add a profile picture here</a>.</p>
         @endif
         <h2 class="mt-10 text-2xl font-semibold text-blue-700 mb-4">Let's Get Started</h2>
         <p class="text-lg text-gray-600 mb-6">Great job, {{ auth()->user()->name }}! Based on your name, I think this quiz category would be perfect for you:</p>
@@ -47,7 +47,11 @@
         @php
             $randomCategory = \App\Models\Category::inRandomOrder()->first();
         @endphp
+        @if ($randomCategory)
         <p class="text-lg text-gray-600 mb-4">How about starting with the <span class="font-semibold text-blue-700">{{ $randomCategory->name }}</span> category? You can explore it <a href="{{ route('users.panel.quiz', ['category' => $randomCategory->id]) }}" class="font-semibold text-blue-700">here</a>.</p>
+        @else
+        <p class="text-lg text-gray-600 mb-4">How about starting with the any category? You can explore it <a href="{{ route('users.panel.quiz')}}" class="font-semibold text-blue-700">here</a>.</p>
+        @endif
     </div>
      
         <!-- Why Quizzes are Important -->

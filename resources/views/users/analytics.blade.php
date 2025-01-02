@@ -4,18 +4,24 @@
 
         <table class="min-w-full bg-white border border-gray-200">
             <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Questions</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correct Answers</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score (%)</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <tr class="border-b">
+                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Category</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Total Questions</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Correct Answers</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Score (%)</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Date</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($analytics as $analytic)
                     <tr class="border-b">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->category->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->id }}</td>
+                        @if ($analytic->category && $analytic->category->name)
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->category->name }}</td>
+                        @else
+                            <td class="px-6 py-4 whitespace-nowrap">Timed Quiz</td>
+                        @endif
                         <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->total_questions }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->correct_answers }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->score }}</td>

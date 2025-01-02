@@ -26,7 +26,7 @@
             <nav>
                 <ul class="space-y-4">
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0l8 6h-2v12h-12v-12h-2l8-6zm0 12h2v8h-2v-8zm-4 0h2v8h-2v-8z"/>
                             </svg>
@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.users.index') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.users.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm1-15h-2v4h2v-4zm0 6h-2v2h2v-2z"/>
                             </svg>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.categories.index') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.categories.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm-5-14h10v2h-10v-2zm0 4h10v2h-10v-2zm0 4h10v2h-10v-2z"/>
                             </svg>
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.questions.index') }}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.questions.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 4c-.55 0-1 .45-1 1v3h2v-3c0-.55-.45-1-1-1z"/>
                             </svg>
@@ -59,7 +59,7 @@
                     </li>
                     
                     <li>
-                        <a href="{{ route('admin.panel.profile.edit')}}" class="flex items-center text-lg font-semibold hover:bg-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.panel.profile.edit')}}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm-1-14h2v4h-2v-4zm0 6h2v2h-2v-2z"/>
                             </svg>
@@ -77,7 +77,11 @@
                 @auth
                 <div class="flex items-center space-x-4">
                     <!-- Profile Picture -->
+                    @if (auth()->user()->profile_picture)
                     <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                    @else
+                        <img src="{{ asset('images/default-profile.png')}}" alt="" class="w-12 h-12 rounded-full border-2 border-gray-300">                        
+                    @endif
 
                     <!-- User Name and Dashboard Text -->
                     <div class="text-lg font-semibold text-gray-800">

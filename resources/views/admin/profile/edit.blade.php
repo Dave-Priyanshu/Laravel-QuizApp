@@ -50,14 +50,10 @@
                                     <i class="fas fa-edit"></i>
                                 </span>
                             </div>
-                             {{-- <!-- Remove Profile Picture Button -->
-                            <form action="{{ route('users.panel.profile.removePicture') }}" method="POST" class="mt-2">
-                                @csrf
-                                <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-semibold">Remove Profile Picture</button>
-                            </form> --}}
                         @else
+                            <!-- Default Profile Picture -->
                             <div class="w-32 h-32 rounded-full border-2 border-gray-200 bg-gray-100 flex items-center justify-center text-gray-400">
-                                <i class="fa-solid fa-user"></i>
+                                <img src="{{ asset('images/default-profile.png') }}" alt="Default Profile Picture" class="w-full h-full rounded-full object-cover">
                             </div>
                         @endif
                     </div>

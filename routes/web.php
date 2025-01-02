@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\admin\QuestionController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\user\UserPanelController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,18 +20,16 @@ Route::get('/', function () {
     return view('users.login');
 })->name('home');
 
-
-
 //show login form
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
 
 //Register page route
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 Route::post('/register', [AuthController::class, 'register']);
 
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Categories Route
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
@@ -78,6 +77,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('/admin-profile', [AuthController::class, 'editProfile'])->name('admin.panel.profile.edit');
     Route::post('/admin-profile', [AuthController::class, 'updateProfile'])->name('admin.panel.profile.update');
     
+    
 });
 
 // Frontend related routes for user
@@ -96,12 +96,12 @@ Route::middleware(['auth'])->prefix('users')->group(function(){
     // update user profile
     Route::get('/profile', [UserPanelController::class, 'editProfile'])->name('users.panel.profile.edit');
     Route::post('/profile', [UserPanelController::class, 'updateProfile'])->name('users.panel.profile.update');
-    // Route::post('/profile/remove-picture', [UserController::class, 'removeProfilePicture'])->name('users.panel.profile.removePicture');
 
-    // Route::get('/welcomePage',function(){
-    //     return view('users.welcome');
-    // })->name('user.welcome.page');
+    // quiz time routes
+    Route::get('/timed-quiz', [UserPanelController::class, 'timedQuiz'])->name('quiz.timed');
+    Route::post('/timed-quiz/submit', [UserPanelController::class, 'storeTimedAnswers'])->name('quiz.timed.submit');
 
+    // show multi select que route
+    Route::get('/quiz/{type}', [QuizController::class, 'showQuestions'])->name('quiz.show');
+    Route::post('/quiz/submit', [QuizController::class, 'storeQuizAnswers'])->name('quiz.submit');
 });
-
-
