@@ -59,6 +59,9 @@
              @error('email')
              <p class="text-red-500 text-xs mt-1">{{$message}}</p>
              @enderror
+             <p class="text-red-600 text-sm font-semibold mt-1">
+                ⚠ Please enter a valid email address to receive the OTP.
+            </p>
          </div>
  
          <div class="mb-6">
@@ -99,7 +102,40 @@
          </div>
      </form>
     </div>
+
+    <!-- OTP Sent Popup -->
+    @if(session('otp_sent'))
+        <!-- Popup Modal -->
+        <div id="otp-popup" class="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-xs mx-auto">
+                <h3 class="text-lg font-bold text-center">OTP Sent</h3>
+                <p class="text-center text-sm text-gray-600 mt-2">
+                    An OTP has been sent to your email. Please check your inbox.
+                </p>
+                <div class="mt-4 text-center">
+                    <button onclick="closePopup()" class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
  
+    <script>
+        // Close the popup when the button is clicked
+        function closePopup() {
+            const popup = document.getElementById('otp-popup');
+            popup.style.display = 'none';
+        }
+
+        // Automatically close the popup after 5 seconds
+        setTimeout(() => {
+            const popup = document.getElementById('otp-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        }, 5000); // closes after 5 seconds
+    </script>
     <script>
          function updateProgressBar() {
              const formFields = document.querySelectorAll('#registration-form input');

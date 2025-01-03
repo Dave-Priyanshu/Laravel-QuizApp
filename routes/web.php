@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (auth()->check()) {
         // Redirect authenticated users to their respective dashboards
-        return redirect()->route(auth()->user()->is_admin ? 'admin.dashboard' : 'user.welcome.page');
+        return redirect()->route(auth()->user()->role === 'admin' ? 'admin.dashboard' : 'user.welcome.page');
     }
-
-    // Return the landing page if the user is not authenticated
     return view('users.login');
 })->name('home');
 
@@ -27,6 +25,10 @@ Route::post('/login', [AuthController::class, 'login']);
 //Register page route
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 Route::post('/register', [AuthController::class, 'register']);
+
+// OTP Verification Routes
+Route::get('/verify-otp', [AuthController::class, 'showOtpForm'])->name('verify.otp');
+Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verify.otp.submit');
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
