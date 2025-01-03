@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($analytics as $analytic)
+                @forelse ($analytics as $analytic)
                     <tr class="border-b">
                         <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->id }}</td>
                         @if ($analytic->category && $analytic->category->name)
@@ -27,7 +27,13 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->score }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $analytic->created_at->format('d M Y') }}</td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center text-gray-500 py-6">
+                            No data found.
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
