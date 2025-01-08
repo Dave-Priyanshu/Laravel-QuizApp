@@ -8,7 +8,9 @@
 </p>
 
 Welcome to the **Quiz Game** repository! 🎮
-
+---
+🌐 **The full project is now live!** You can access it here: [Live Project Link](https://lara-quiz.wuaze.com/)  
+---
 This is a fun and interactive quiz platform where users can take quizzes, track their performance, and challenge themselves with different quiz categories and difficulty levels.
 
 ## Features 🎉
