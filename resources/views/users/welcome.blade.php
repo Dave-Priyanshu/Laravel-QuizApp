@@ -13,7 +13,7 @@
         <div class="flex items-center mb-4">
             <!-- Profile Photo -->
             @if(auth()->user()->profile_picture)
-                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="shadow-xl w-16 h-16 rounded-full object-cover mr-4">
+                <img src="{{ asset( auth()->user()->profile_picture) }}" alt="Profile Picture" class="shadow-xl w-16 h-16 rounded-full object-cover mr-4">
             @else
                <img src="{{ asset('images/default-profile.png')}}" class="shadow-xl w-16 h-16 rounded-full object-cover mr-4" alt="">
             @endif

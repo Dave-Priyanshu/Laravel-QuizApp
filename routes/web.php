@@ -6,16 +6,33 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\admin\QuestionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\user\UserPanelController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/landingPage', [TestimonialController::class, 'index'])->name('landing.page');
+
+Route::get('/about',function(){
+    return view('personal.about');
+})->name('about');
+
+Route::get('/contact',function(){
+    return view('personal.contact');
+})->name('contact');
+
+Route::get('/rules',function(){
+    return view('personal.rules');
+})->name('rules');
+
 // Home page route
 Route::get('/', function () {
-    if (auth()->check()) {
-        // Redirect authenticated users to their respective dashboards
-        return redirect()->route(auth()->user()->role === 'admin' ? 'admin.dashboard' : 'user.welcome.page');
+    if (!auth()->check()) {
+        // Redirect unauthenticated users to the landing page
+        return redirect()->route('landing.page');
     }
-    return view('users.login');
+
+    // Redirect authenticated users to their respective dashboards
+    return redirect()->route(auth()->user()->role === 'admin' ? 'admin.dashboard' : 'user.welcome.page');
 })->name('home');
 
 //show login form
@@ -106,4 +123,8 @@ Route::middleware(['auth'])->prefix('users')->group(function(){
     // show multi select que route
     Route::get('/quiz/{type}', [QuizController::class, 'showQuestions'])->name('quiz.show');
     Route::post('/quiz/submit', [QuizController::class, 'storeQuizAnswers'])->name('quiz.submit');
+
+    // testimonial route
+    Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial.index');
 });
+Route::post('/store-testimonial', [TestimonialController::class, 'store'])->name('testimonial.store');

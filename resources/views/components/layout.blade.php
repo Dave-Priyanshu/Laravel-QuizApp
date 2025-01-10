@@ -31,103 +31,73 @@
         </script>
         <title>Quiz Game | Learn, Play, Win!</title>
     </head>
-    <body class="mb-48 bg-background">
-        <nav id="navbar" class="flex flex-wrap justify-between items-center bg-white drop-shadow-xl py-4 px-6 md:px-8">
-            <div class="flex items-center space-x-4">
+    <body class="mb-20 bg-background">
+        <nav id="navbar" class="flex justify-between items-center bg-sky-600 text-white py-3 px-4 ">
+            <!-- Logo and Title -->
+            <div class="flex items-center space-x-3">
                 <a href="/">
-                    <img class="w-20 md:w-24" src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" />
+                    <img class="w-12 md:w-16" src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" />
                 </a>
-                <span class="text-lg md:text-xl font-bold text-laravel">Learn, Play, Win!</span>
+                <span class="text-lg md:text-xl font-semibold">Quiz Game</span>
             </div>
+        
+            <!-- Mobile Menu Toggle -->
             <button 
-                class="block md:hidden text-laravel focus:outline-none" 
-                id="menu-toggle"
+                id="menu-toggle" 
+                class="block md:hidden text-white focus:outline-none"
                 aria-label="Toggle navigation"
             >
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <ul id="menu" class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 text-lg">
+        
+            <!-- Navigation Links -->
+            <ul id="menu" class="hidden md:flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-5 text-sm md:text-base">
                 @auth
                 <li>
-                    <span class="font-bold uppercase text-fontCol">Welcome, {{ auth()->user()->name }}</span>
+                    <span class="font-semibold">Welcome, {{ auth()->user()->name }}</span>
                 </li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-laravel hover:underline">
+                        <button type="submit" class="hover:underline">
                             <i class="fa-solid fa-door-closed"></i> Logout
                         </button>
                     </form>
                 </li>
                 @else
                 <li>
-                    <a href="/register" class="text-fontCol hover:text-laravel">
+                    <a href="/landingPage" class="hover:text-black">
+                        <i class="fa-solid fa-home"></i> Home Page
+                    </a>
+                </li>
+                <li>
+                    <a href="/register" class="hover:text-black">
                         <i class="fa-solid fa-user-plus"></i> Register
                     </a>
                 </li>
                 <li>
-                    <a href="/login" class="text-fontCol hover:text-laravel">
+                    <a href="/login" class="hover:text-black">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
                     </a>
                 </li>
                 @endauth
             </ul>
         </nav>
-
+        
         <script>
             const menuToggle = document.getElementById('menu-toggle');
             const menu = document.getElementById('menu');
-
+        
             menuToggle.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
             });
 
-            window.addEventListener("scroll", function() {
-                var navbar = document.getElementById("navbar");
-                if (window.scrollY > 50) {
-                    navbar.classList.add("bg-laravel", "shadow-lg");
-                } else {
-                    navbar.classList.remove("bg-laravel", "shadow-lg");
-                }
-            });
         </script>
+    
 
         <main>
             {{ $slot }}
         </main>
     
-        <footer
-            class="fixed bottom-0 left-0 w-full flex flex-wrap items-center justify-start  text-white h-16 mt-24 opacity-90 md:justify-center"
-            style="background: linear-gradient(to right, #1E3A8A, #3B82F6);"
-        >
-            <p class="ml-1">Copyright &copy; 2024, All Rights Reserved</p>
-            <div class="absolute bottom-3 left-10 flex space-x-4 text-2xl">
-                <a href="https://github.com/Dave-Priyanshu" class="hover:text-gray-200">
-                    <i class="fa-brands fa-github"></i>
-                </a><footer
-                class="fixed bottom-0 left-0 w-full flex flex-wrap items-center justify-start  text-white h-16 mt-24 opacity-90 md:justify-center"
-                style="background: linear-gradient(to right, #1E3A8A, #3B82F6);"
-            >
-                <p class="ml-1">Copyright &copy; 2024, All Rights Reserved</p>
-                <div class="absolute bottom-3 left-10 flex space-x-4 text-2xl">
-                    <a href="https://github.com/Dave-Priyanshu" class="hover:text-gray-200">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="#" class="hover:text-gray-200">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:priyanshutest2001@gmail.com" class="hover:text-gray-200">
-                        <i class="fa-regular fa-envelope"></i>
-                    </a>
-                </div>
-            </footer>
-                <a href="#" class="hover:text-gray-200">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="mailto:priyanshutest2001@gmail.com" class="hover:text-gray-200">
-                    <i class="fa-regular fa-envelope"></i>
-                </a>
-            </div>
-        </footer>
     </body>
 </html>

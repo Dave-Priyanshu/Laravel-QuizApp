@@ -45,7 +45,7 @@
                     <div class="flex items-center space-x-4">
                         @if ($user->profile_picture)
                             <div class="relative">
-                                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="w-32 h-32 rounded-full border-2 border-gray-200 object-cover">
+                                <img src="{{ asset( $user->profile_picture) }}" alt="Profile Picture" class="w-32 h-32 rounded-full border-2 border-gray-200 object-cover">
                                 <span class="absolute bottom-0 right-0 bg-blue-600 text-white text-xs p-1 rounded-full cursor-pointer">
                                     <i class="fas fa-edit"></i>
                                 </span>

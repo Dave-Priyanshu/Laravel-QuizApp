@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('assets/css/editor.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
 
     <!-- DataTables CSS and JS -->
@@ -79,7 +78,7 @@
                 <div class="flex items-center space-x-4">
                     <!-- Profile Picture -->
                     @if (auth()->user()->profile_picture)
-                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                    <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
                     @else
                         <img src="{{ asset('images/default-profile.png')}}" alt="" class="w-12 h-12 rounded-full border-2 border-gray-300">                        
                     @endif

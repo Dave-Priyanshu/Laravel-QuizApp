@@ -29,6 +29,14 @@
             <nav>
                 <ul class="space-y-4">
                     <li>
+                        <a href="{{ route('landing.page') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('landing.page') ? 'bg-white text-blue-700' : '' }}">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0l8 6h-2v12h-12v-12h-2l8-6zm0 12h2v8h-2v-8zm-4 0h2v8h-2v-8z"/>
+                            </svg>
+                            Home Page
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('user.welcome.page') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('user.welcome.page') ? 'bg-white text-blue-700' : '' }}">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0l8 6h-2v12h-12v-12h-2l8-6zm0 12h2v8h-2v-8zm-4 0h2v8h-2v-8z"/>
@@ -37,19 +45,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.panel.profile.edit') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('users.panel.profile.edit') ? 'bg-white text-blue-700' : '' }}">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.333 0-10 1.667-10 5v3h20v-3c0-3.333-6.667-5-10-5z"/>
-                            </svg>                             
-                            Profile Settings
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('users.panel.analytics') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('users.panel.analytics') ? 'bg-white text-blue-700' : '' }}">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M3 13h2v6H3zm4-6h2v12H7zm4 4h2v8h-2zm4-7h2v15h-2zm4 5h2v10h-2z"></path>
-                            </svg>
-                            
+                            </svg>      
                             Analytics
                         </a>
                     </li>
@@ -58,9 +57,15 @@
                             <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1zm1 4v10h14V7H5zm3 2h2v2H8V9zm4 0h5v2h-5V9zm-4 4h10v2H8v-2z"></path>
                             </svg>
-                            
-                            
                             Quizzes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('users.panel.profile.edit') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('users.panel.profile.edit') ? 'bg-white text-blue-700' : '' }}">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.333 0-10 1.667-10 5v3h20v-3c0-3.333-6.667-5-10-5z"/>
+                            </svg>                             
+                            Profile Settings
                         </a>
                     </li>
                 </ul>
@@ -75,7 +80,7 @@
                     <div class="flex items-center space-x-4">
                         <!-- Profile Picture -->
                         @if (auth()->user()->profile_picture)
-                        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                        <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
                         @else   
                             <img src="{{ asset('images/default-profile.png') }}" alt="" class="w-12 h-12 rounded-full border-2 border-gray-300">
                         @endif

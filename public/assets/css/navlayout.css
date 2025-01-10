@@ -1,0 +1,101 @@
+body {
+    font-family: 'Lexend', sans-serif;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    background: #f3f6f9;
+}
+
+/* Profile Header */
+.profile-header {
+    width: 100%;
+    height: 200px;
+    background-color: #0073b1;
+    /* background-color: red; */
+    position: relative;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    border: 4px solid white;
+    position: absolute;
+    left: 20px;
+    top: 130px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Profile Details */
+.profile-info {
+    margin-left: 200px;
+    margin-top: 30px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.profile-info h1 {
+    font-size: 2em;
+    color: #333;
+    margin: 0;
+}
+
+.profile-info .job-title {
+    color: #555;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.profile-info p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.action-buttons {
+    margin-top: 15px;
+}
+
+.action-buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0073b1;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-buttons button:hover {
+    background-color: #005582;
+}
+
+/* Section Styles */
+.section {
+    margin-top: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    font-size: 1.5em;
+    color: #0073b1;
+    margin-bottom: 10px;
+}
+
+.section p {
+    color: #333;
+    line-height: 1.5;
+}
