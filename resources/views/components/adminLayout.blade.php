@@ -27,7 +27,7 @@
             <nav>
                 <ul class="space-y-4">
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('admin.dashboard') ? 'bg-white text-blue-700' : '' }}">
                             <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0l8 6h-2v12h-12v-12h-2l8-6zm0 12h2v8h-2v-8zm-4 0h2v8h-2v-8z"/>
                             </svg>
@@ -35,35 +35,35 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.users.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm1-15h-2v4h2v-4zm0 6h-2v2h2v-2z"/>
+                        <a href="{{ route('admin.users.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('admin.users.index') ? 'bg-white text-blue-700' : '' }}">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/>
                             </svg>
-                            Users
+                            All Users
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.categories.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm-5-14h10v2h-10v-2zm0 4h10v2h-10v-2zm0 4h10v2h-10v-2z"/>
-                            </svg>
+                        <a href="{{ route('admin.categories.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('admin.categories.index') ? 'bg-white text-blue-700' : '' }}">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M4 4h6v6h-6v-6zm0 10h6v6h-6v-6zm10-10h6v6h-6v-6zm0 10h6v6h-6v-6z"/>
+                            </svg>                            
                             Categories
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.questions.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 4c-.55 0-1 .45-1 1v3h2v-3c0-.55-.45-1-1-1z"/>
-                            </svg>
+                        <a href="{{ route('admin.questions.index') }}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('admin.questions.index') ? 'bg-white text-blue-700' : '' }}">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-.002-14c-1.657 0-3 1.343-3 3h2c0-.551.449-1 1-1 .551 0 1 .449 1 1s-.449 1-1 1h-1v2h2v-.29c1.161-.417 2-1.525 2-2.71 0-1.657-1.343-3-3-3zm-1 10h2v2h-2v-2z"/>
+                            </svg>                            
                             Questions
                         </a>
                     </li>
                     
                     <li>
-                        <a href="{{ route('admin.panel.profile.edit')}}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.522 0-10-4.478-10-10s4.478-10 10-10 10 4.478 10 10-4.478 10-10 10zm-1-14h2v4h-2v-4zm0 6h2v2h-2v-2z"/>
-                            </svg>
+                        <a href="{{ route('admin.panel.profile.edit')}}" class="flex items-center text-lg font-semibold hover:bg-white hover:text-blue-700 p-3 rounded transition duration-300 {{ request()->routeIs('admin.panel.profile.edit') ? 'bg-white text-blue-700' : '' }}">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.333 0-10 1.667-10 5v3h20v-3c0-3.333-6.667-5-10-5z"/>
+                            </svg>                            
                            Profile Settings
                         </a>
                     </li>
