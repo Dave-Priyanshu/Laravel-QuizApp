@@ -17,17 +17,18 @@ This is a fun and interactive quiz platform where users can take quizzes, track 
 
 ### ✅ Features You Can Enjoy:
 - **Login and Registration**: Securely log in and register to access all the features.
+- **OTP Verification**: Receive OTP in gmail after registration.
 - **Profile Update**: Update your profile information at any time.
 - **View All Categories of Quizzes**: Explore various categories and pick your favorite quizzes.
 - **Play Quizzes**: Challenge yourself with a variety of quizzes.
 - **Track Your Performance**: View detailed analytics about your quiz performance and progress.
+- **Timed Questions**: Challenge yourself with time-limited questions!
+- **Randomized Questions**: Get a fresh set of questions every time.
 
 ### 🚀 Upcoming Features:
 We are constantly working to improve your experience! Here are some of the exciting features coming soon:
 - **Social Login Integration**: Log in with your favorite social accounts (e.g., Google, Facebook).
 - **Mail System**: Stay updated with notifications and reminders.
-- **Timed Questions**: Challenge yourself with time-limited questions!
-- **Randomized Questions**: Get a fresh set of questions every time.
 - **Award Points for Correct Answers**: Earn points for every correct answer.
 - **Quiz Difficulty Levels**: Choose between Easy, Medium, and Hard levels.
 - **Hint System**: Use earned points to get hints for difficult questions.
