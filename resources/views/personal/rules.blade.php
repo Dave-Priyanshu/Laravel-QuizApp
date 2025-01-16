@@ -7,98 +7,53 @@
     <title>Quiz Game Rules & Regulations</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Lexend', sans-serif;
-            background-color: #f7fafc;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        .card h1 {
-            font-size: 2.5rem;
-            color: #333;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-        }
-        .card h2 {
-            font-size: 1.75rem;
-            color: #2b6cb0;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        .card h2 i {
-            margin-right: 0.5rem;
-        }
-        .card p {
-            font-size: 1rem;
-            color: #4a5568;
-            line-height: 1.75;
-        }
-        .card ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-        .card ul li {
-            font-size: 1rem;
-            color: #4a5568;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-        }
-        .card ul li i {
-            color: #38b2ac;
-            margin-right: 0.5rem;
-        }
-        .card a {
-            color: #3182ce;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .card a:hover {
-            color: #2b6cb0;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.875rem;
-            color: #718096;
-        }
-        .back-button {
-            display: inline-block;
-            background-color: #3182ce;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 1rem;
-            text-decoration: none;
-            margin-bottom: 1.5rem;
-            transition: background-color 0.3s;
-        }
-        .back-button:hover {
-            background-color: #2b6cb0;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('assets/css/rules.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Add TailwindCSS -->
 </head>
-<body>
+<body class="h-full bg-gradient-to-r from-[#c7e4f8] to-white">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-sky-800 shadow-md">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <a href="/">
+                    <img src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" class="h-12 w-12">
+                </a>
+                <div class="hidden md:flex ml-10 space-x-3">
+                    @auth
+                    <a href="/" :active="request()->is('/')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Your Dashboard</a>
+                    @endauth
+                    @guest
+                    <a href="/home" :active="request()->is('/home')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Home</a>
+                    @endguest
+                    <a href="/about" :active="request()->is('/about')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">About Developer</a>
+                </div>
+            </div>
+
+            @auth
+            <div class="text-lg font-semibold text-white flex items-center space-x-4">
+                <span class="block text-xl font-bold capitalize">Hello, {{ auth()->user()->name }}</span>
+                @if (auth()->user()->profile_picture)
+                <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                @else
+                <img src="{{ asset('images/default-profile.png') }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                @endif
+            </div>
+            @endauth
+
+            @guest
+            <div class="space-x-4">
+                <a href="/login" class="text-white hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-semibold">Login</a>
+                <a href="/register" class="text-white px-3 py-2 rounded-md text-sm font-semibold hover:bg-yellow-500">Register</a>
+            </div>
+            @endguest
+        </div>
+    </nav>
 
     <div class="container">
-        <a href="{{ route('landing.page') }}" class="back-button">
+        {{-- <a href="{{ route('landing.page') }}" class="back-button">
             <i class="fas fa-arrow-left"></i> Back to Landing Page
-        </a>
+        </a> --}}
 
         <div class="card">
             <h1><i class="fas fa-gamepad text-blue-600"></i> Quiz Game Rules & Regulations</h1>
@@ -136,11 +91,37 @@
                 </p>
             </section>
         </div>
-
-        <div class="footer">
-            <p>&copy; 2025 Quiz Game. All Rights Reserved.</p>
-        </div>
     </div>
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-gray-400 py-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
+                <p>Email: priyanshuoffice03@gmail.com</p>
+                <p>Phone: Nah, email’s better!</p>
+                <p>Address: Ahmedabad, Gujarat, India</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>
+                <ul>
+                    <li><a href="/about" class="hover:text-white">About</a></li>
+                    <li><a href="/terms-&-conditions" class="hover:text-white">Terms & Conditions</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-4">Follow Us</h3>
+                <div class="flex text-xl space-x-4">
+                    <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a> <!-- Facebook color -->
+                    <a href="#" class="hover:text-[#E4405F]"><i class="fab fa-instagram"></i></a> <!-- Instagram color -->
+                    <a href="#" class="hover:text-[#0077B5]"><i class="fab fa-linkedin"></i></a> <!-- LinkedIn color -->
+                </div>
+            </div>            
+        </div>
+        <div class="text-center mt-12 text-m">
+            &copy; 2025 LaraQuiz. All rights reserved.
+        </div>
+    </footer>
 
 </body>
 </html>

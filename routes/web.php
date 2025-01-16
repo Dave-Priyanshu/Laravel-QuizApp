@@ -20,7 +20,7 @@ Route::get('/contact',function(){
     return view('personal.contact');
 })->name('contact');
 
-Route::get('/rules',function(){
+Route::get('/terms-&-conditions',function(){
     return view('personal.rules');
 })->name('rules');
 

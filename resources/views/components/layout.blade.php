@@ -12,6 +12,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script>
@@ -89,35 +90,35 @@
         <main>
             {{ $slot }}
         </main>
-     <!-- Footer Section -->
-     <footer class="bg-gray-800 text-gray-400 py-8 mt-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
-                <p>Email: priyanshuoffice03@gmail.com</p>
-                <p>Phone: Nah, email’s better!</p>
-                <p>Address: Ahmedabad, Gujarat, India</p>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>
-                <ul>
-                    <li><a href="/about" class="hover:text-white">About Us</a></li>
-                    <li><a href="/rules" class="hover:text-white">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold text-white mb-4">Follow Us</h3>
-                <div class="flex text-xl space-x-4">
-                    <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a> <!-- Facebook color -->
-                    <a href="#" class="hover:text-[#E4405F]"><i class="fab fa-instagram"></i></a> <!-- Instagram color -->
-                    <a href="#" class="hover:text-[#0077B5]"><i class="fab fa-linkedin"></i></a> <!-- LinkedIn color -->
-                </div>
-            </div>            
+<!-- Footer Section -->
+<footer class="bg-gray-800 text-gray-400 py-8 mt-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+            <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
+            <p>Email: priyanshuoffice03@gmail.com</p>
+            <p>Phone: Nah, email’s better!</p>
+            <p>Address: Ahmedabad, Gujarat, India</p>
         </div>
-        <div class="text-center mt-12 text-m">
-            &copy; 2025 LaraQuiz. All rights reserved.
+        <div>
+            <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>
+            <ul>
+                <li><a href="/about" class="hover:text-white">About</a></li>
+                <li><a href="/terms-&-conditions" class="hover:text-white">Terms & Conditions</a></li>
+                <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            </ul>
         </div>
-    </footer>
-    </body>
+        <div>
+            <h3 class="text-xl font-semibold text-white mb-4">Follow Us</h3>
+            <div class="flex text-xl space-x-4">
+                <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a> <!-- Facebook color -->
+                <a href="#" class="hover:text-[#E4405F]"><i class="fab fa-instagram"></i></a> <!-- Instagram color -->
+                <a href="#" class="hover:text-[#0077B5]"><i class="fab fa-linkedin"></i></a> <!-- LinkedIn color -->
+            </div>
+        </div>            
+    </div>
+    <div class="text-center mt-12 text-m">
+        &copy; 2025 LaraQuiz. All rights reserved.
+    </div>
+</footer>
+</body>
 </html>

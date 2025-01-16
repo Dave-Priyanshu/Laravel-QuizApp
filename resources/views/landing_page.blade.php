@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/navlayout.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
 
     {{-- Testimonial --}}
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -185,9 +186,9 @@
     <!-- Call to Action Section -->
     <section class="bg-blue-800 text-white py-6">
         <div class="w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Ready to Start the Fun?</h2>
+            <h2 class="text-3xl font-bold mb-6">Ready to Start the Fun?</h2>
             <p class="text-lg mb-8">Sign up now and join millions of players challenging their minds.</p>
-            <a href="/register" class="bg-yellow-500 text-blue-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-600">Get Started</a>
+            <a href="/register" class="bg-yellow-500 text-blue-800 px-8 py-4 rounded-lg text-m font-semibold hover:bg-yellow-600">Get Started</a>
         </div>
     </section>
 
@@ -195,21 +196,21 @@
     <footer class="bg-gray-800 text-gray-400 py-8">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
+                <h3 class="text-l font-semibold text-white mb-4">Contact Us</h3>
                 <p>Email: priyanshuoffice03@gmail.com</p>
                 <p>Phone: Nah, email’s better!</p>
                 <p>Address: Ahmedabad, Gujarat, India</p>
             </div>
             <div>
-                <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>
+                <h3 class="text-l font-semibold text-white mb-4">Useful Links</h3>
                 <ul>
-                    <li><a href="/about" class="hover:text-white">About Us</a></li>
-                    <li><a href="/rules" class="hover:text-white">Terms of Service</a></li>
+                    <li><a href="/about" class="hover:text-white">About</a></li>
+                    <li><a href="/terms-&-conditions" class="hover:text-white">Terms & Conditions</a></li>
                     <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
                 </ul>
             </div>
             <div>
-                <h3 class="text-xl font-semibold text-white mb-4">Follow Us</h3>
+                <h3 class="text-l font-semibold text-white mb-4">Follow Us</h3>
                 <div class="flex text-xl space-x-4">
                     <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a> <!-- Facebook color -->
                     <a href="#" class="hover:text-[#E4405F]"><i class="fab fa-instagram"></i></a> <!-- Instagram color -->
