@@ -123,6 +123,16 @@
     </div>
 </div>
 
+<!-- Social Media Links -->
+<div class="bg-white p-6 rounded-md shadow-md mt-6">
+    <h2 class="text-xl font-semibold">Connect with me</h2>
+    <div class="mt-4 flex space-x-4">
+        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-blue-600 hover:text-blue-800">LinkedIn</a>
+        <a href="https://github.com/yourprofile" target="_blank" class="text-gray-800 hover:text-black">GitHub</a>
+        <a href="https://twitter.com/yourprofile" target="_blank" class="text-blue-400 hover:text-blue-600">Twitter</a>
+    </div>
+</div>
+
 <!-- About Section -->
 <div class="section">
     <h2>About</h2>
@@ -146,6 +156,16 @@
 <div class="section">
     <h2>Skills</h2>
     <p>Laravel, Magento, PHP, HTML, CSS, JavaScript</p>
+</div>
+
+<div class="bg-white p-6 rounded-md shadow-md mt-6">
+    <h2 class="text-xl font-semibold">My Skills</h2>
+    <ul class="mt-4 space-y-2">
+        <li class="text-gray-600">💻 Web Development (Laravel, Vue.js, React)</li>
+        <li class="text-gray-600">🖌️ Front-end (HTML, CSS, Tailwind CSS)</li>
+        <li class="text-gray-600">🔧 Database Management (MySQL, PostgreSQL)</li>
+        <li class="text-gray-600">📦 Version Control (Git, GitHub)</li>
+    </ul>
 </div>
 
 </body>

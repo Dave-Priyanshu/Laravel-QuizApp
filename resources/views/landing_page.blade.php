@@ -26,12 +26,12 @@
             <img src="{{ asset('images/logo.png') }}" alt="Quiz Game" class="h-12 w-12">
             <div class="hidden md:flex ml-10 space-x-3">
                 @auth
-                <a href="/" :active="request()->is('/')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Dashboard</a>
+                <a href="/" :active="request()->is('/')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Your Dashboard</a>
                 @endauth
                 @guest
                 <a href="/landingPage" :active="request()->is('/landingPage')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Home</a>
                 @endguest
-                <a href="/about" :active="request()->is('/about')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">About Me</a>
+                <a href="/about" :active="request()->is('/about')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">About Developer</a>
                 {{-- <a href="/contact" :active="request()->is('/contact')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Contact</a> --}}
             </div>
         </div>
@@ -40,7 +40,11 @@
         @auth
         <div class="text-lg font-semibold text-white flex items-center space-x-4">
             <span class="block text-xl font-bold capitalize">Hello, {{ auth()->user()->name }}</span>
+            @if (auth()->user()->profile_picture)
             <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+            @else
+            <img src="{{ asset('images/default-profile.png') }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+            @endif
         </div>
         @endauth
 

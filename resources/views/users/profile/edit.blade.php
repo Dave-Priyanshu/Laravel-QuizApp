@@ -7,6 +7,12 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if (session('error'))
+            <div class="bg-red-100 text-red-800 p-4 rounded-lg mb-6">
+                {{ session('error') }}
+            </div>
+        @endif
+
 
         <form action="{{ route('users.panel.profile.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -63,6 +69,15 @@
                     <p class="text-sm text-gray-500 mt-2">
                         The profile picture should be in JPEG, PNG, or JPG format and no larger than 2MB.
                     </p>
+                </div>
+
+                <!-- Current Password -->
+                <div>
+                    <label for="current_password" class="block text-lg font-medium text-blue-800">Current Password</label>
+                    <input type="password" name="current_password" id="current_password" class="mt-2 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent hover:border-blue-400 transition-all">
+                    @error('current_password')
+                        <span class="text-sm text-red-600 mt-2">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Password Fields -->

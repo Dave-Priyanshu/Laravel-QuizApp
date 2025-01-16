@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserAnswer;
 use App\Models\UserQuizAnalytics;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 use function Ramsey\Uuid\v1;
@@ -122,10 +123,22 @@ class UserPanelController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'current_password' => 'required_with:password|string',
             'bio' => 'nullable|string|max:500',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
+        // Validate and update password only if provided
+        if ($request->filled('password')) {
+            // Check if the provided current password is correct
+            if (!Hash::check($request->current_password, $user->password)) {
+                return redirect()->route('users.panel.profile.edit')->with('error', 'The current password is incorrect.');
+            }
 
+            // If the current password is correct, hash and update the new password
+            $user->password = Hash::make($request->password);
+        }
+
+        
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
             $profilePicture = $request->file('profile_picture')->store('profile_pictures', 'public');
@@ -137,12 +150,6 @@ class UserPanelController extends Controller
         $user->email = $request->email;
         $user->bio = $request->bio;
 
-        // Update password if provided
-        if ($request->password) {
-            $user->password = Hash::make($request->password);
-        }
-
-        $user->save();
 
         return redirect()->route('users.panel.profile.edit')->with('success', 'Profile updated successfully.');
     }

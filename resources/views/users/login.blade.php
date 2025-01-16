@@ -70,6 +70,12 @@
                  <i class="fa fa-user-plus mr-2"></i> Sign In
              </button>
          </div>
+         <div class="text-center mt-4">
+            <a href="{{ route('password.request') }}" class="text-blue-600 hover:underline">
+                Forgot Your Password?
+            </a>
+        </div>
+        
  
          <div class="mt-8 text-center">
              <p>

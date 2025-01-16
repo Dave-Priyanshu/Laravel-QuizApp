@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
-
+use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\admin\QuestionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\QuizController;
@@ -10,10 +10,10 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\user\UserPanelController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/landingPage', [TestimonialController::class, 'index'])->name('landing.page');
+Route::get('/home', [TestimonialController::class, 'index'])->name('landing.page');
 
 Route::get('/about',function(){
-    return view('personal.about');
+    return view('personal.about2');
 })->name('about');
 
 Route::get('/contact',function(){
@@ -126,5 +126,13 @@ Route::middleware(['auth'])->prefix('users')->group(function(){
 
     // testimonial route
     Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial.index');
+
+    
 });
+// password reset
+Route::get('password/reset', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('password/reset', [AuthController::class, 'resetPassword'])->name('password.update');
+
 Route::post('/store-testimonial', [TestimonialController::class, 'store'])->name('testimonial.store');

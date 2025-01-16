@@ -66,7 +66,7 @@
                 </li>
                 @else
                 <li>
-                    <a href="/landingPage" class="hover:text-black">
+                    <a href="/home" class="hover:text-black">
                         <i class="fa-solid fa-home"></i> Home Page
                     </a>
                 </li>

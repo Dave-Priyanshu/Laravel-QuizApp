@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Password;
 // use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -179,5 +180,51 @@ class AuthController extends Controller
         $user->save();
 
         return redirect()->route('admin.panel.profile.edit')->with('success', 'Profile updated successfully.');
+    }
+
+    public function showForgotPasswordForm()
+    {
+        return view('auth.passwords.email');
+    }    
+
+    public function sendResetLinkEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email|exists:users,email']);
+
+        // Send password reset email
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with(['success' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
+    }
+
+    public function showResetPasswordForm($token)
+    {
+        return view('auth.passwords.reset', ['token' => $token]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password),
+                ])->save();
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('success', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
 }
