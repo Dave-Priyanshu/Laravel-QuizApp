@@ -19,11 +19,10 @@
 <body class="h-full">
 <div class="min-h-full">
     <!-- Navigation Bar -->
-    <!-- Navigation Bar -->
 <nav class="bg-sky-800 shadow-md"> <!-- Changed to bg-blue-600 for a lighter background -->
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <div class="flex items-center">
-            <img src="{{ asset('images/logo.png') }}" alt="Quiz Game" class="h-12 w-12">
+            <img src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" class="h-12 w-12">
             <div class="hidden md:flex ml-10 space-x-3">
                 @auth
                 <a href="/" :active="request()->is('/')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Your Dashboard</a>
@@ -51,8 +50,8 @@
         {{-- For Guest Users --}}
         @guest    
         <div class="space-x-4">
-            <a href="/login" class="text-white hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Login</a>
-            <a href="/register" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-yellow-500">Register</a>
+            <a href="/login" class="text-white hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-semibold">Login</a>
+            <a href="/register" class="text-white px-3 py-2 rounded-md text-sm font-semibold hover:bg-yellow-500">Register</a>
         </div>
         @endguest
     </div>
@@ -197,9 +196,9 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
-                <p>Email: priyanshutest@gmail.com</p>
-                <p>Phone: +1 123-456-7890</p>
-                <p>Address: 123 Game Street, City, Country</p>
+                <p>Email: priyanshuoffice03@gmail.com</p>
+                <p>Phone: Nah, email’s better!</p>
+                <p>Address: Ahmedabad, Gujarat, India</p>
             </div>
             <div>
                 <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>

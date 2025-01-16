@@ -19,7 +19,8 @@
                 theme: {
                     extend: {
                         colors: {
-                            login: "#952323", // red
+                            // login: "#952323", // red
+                            login: "#eab308", // Yellow
                             laravel: "#1E3A8A", // Blue primary
                             background: "#F8FAFC", // Light blue-gray background
                             fontCol: "#1E293B", // Darker blue for font
@@ -31,58 +32,48 @@
         </script>
         <title>Quiz Game | Learn, Play, Win!</title>
     </head>
-    <body class="mb-20 bg-background">
-        <nav id="navbar" class="flex justify-between items-center bg-sky-600 text-white py-3 px-4 ">
-            <!-- Logo and Title -->
-            <div class="flex items-center space-x-3">
-                <a href="/">
-                    <img class="w-12 md:w-16" src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" />
-                </a>
-                <span class="text-lg md:text-xl font-semibold">Quiz Game</span>
+    <body class="bg-background">
+        <nav class="bg-sky-800 shadow-md">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+                <!-- Logo and Title -->
+                <div class="flex items-center">
+                    <a href="/">
+                        <img src="{{ asset('images/logo.png') }}" alt="Quiz Game Logo" class="h-12 w-12">
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-3">
+                        @auth
+                        <a href="/" :active="request()->is('/')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Your Dashboard</a>
+                        @endauth
+                        @guest
+                        <a href="/home" :active="request()->is('/home')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">Home</a>
+                        @endguest
+                        <a href="/about" :active="request()->is('/about')" class="text-white font-semibold hover:bg-white hover:text-blue-700 px-3 py-2 rounded-md text-m">About Developer</a>
+                    </div>
+                </div>
+        
+                <!-- Authenticated/Guest Links -->
+                <div class="flex items-center space-x-4">
+                    @auth
+                    <div class="text-lg font-semibold text-white flex items-center space-x-4">
+                        <span class="block text-xl font-bold capitalize">Hello, {{ auth()->user()->name }}</span>
+                        @if (auth()->user()->profile_picture)
+                            <img src="{{ asset(auth()->user()->profile_picture) }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                        @else
+                            <img src="{{ asset('images/default-profile.png') }}" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-300">
+                        @endif
+                    </div>
+                    @endauth
+        
+                    @guest
+                    <div class="space-x-4">
+                        <a href="/login" class="text-white hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-semibold">Login</a>
+                        <a href="/register" class="text-white px-3 py-2 rounded-md text-sm font-semibold hover:bg-yellow-500">Register</a>
+                    </div>
+                    @endguest
+                </div>
             </div>
-        
-            <!-- Mobile Menu Toggle -->
-            <button 
-                id="menu-toggle" 
-                class="block md:hidden text-white focus:outline-none"
-                aria-label="Toggle navigation"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        
-            <!-- Navigation Links -->
-            <ul id="menu" class="hidden md:flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-5 text-sm md:text-base">
-                @auth
-                <li>
-                    <span class="font-semibold">Welcome, {{ auth()->user()->name }}</span>
-                </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST" class="inline">
-                        @csrf
-                        <button type="submit" class="hover:underline">
-                            <i class="fa-solid fa-door-closed"></i> Logout
-                        </button>
-                    </form>
-                </li>
-                @else
-                <li>
-                    <a href="/home" class="hover:text-black">
-                        <i class="fa-solid fa-home"></i> Home Page
-                    </a>
-                </li>
-                <li>
-                    <a href="/register" class="hover:text-black">
-                        <i class="fa-solid fa-user-plus"></i> Register
-                    </a>
-                </li>
-                <li>
-                    <a href="/login" class="hover:text-black">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
-                    </a>
-                </li>
-                @endauth
-            </ul>
         </nav>
+        
         
         <script>
             const menuToggle = document.getElementById('menu-toggle');
@@ -98,6 +89,35 @@
         <main>
             {{ $slot }}
         </main>
-    
+     <!-- Footer Section -->
+     <footer class="bg-gray-800 text-gray-400 py-8 mt-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-4">Contact Us</h3>
+                <p>Email: priyanshuoffice03@gmail.com</p>
+                <p>Phone: Nah, email’s better!</p>
+                <p>Address: Ahmedabad, Gujarat, India</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>
+                <ul>
+                    <li><a href="/about" class="hover:text-white">About Us</a></li>
+                    <li><a href="/rules" class="hover:text-white">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-4">Follow Us</h3>
+                <div class="flex text-xl space-x-4">
+                    <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook"></i></a> <!-- Facebook color -->
+                    <a href="#" class="hover:text-[#E4405F]"><i class="fab fa-instagram"></i></a> <!-- Instagram color -->
+                    <a href="#" class="hover:text-[#0077B5]"><i class="fab fa-linkedin"></i></a> <!-- LinkedIn color -->
+                </div>
+            </div>            
+        </div>
+        <div class="text-center mt-12 text-m">
+            &copy; 2025 LaraQuiz. All rights reserved.
+        </div>
+    </footer>
     </body>
 </html>

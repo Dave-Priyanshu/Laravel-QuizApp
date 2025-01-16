@@ -38,8 +38,9 @@ body {
 
 /* Profile Details */
 .profile-info {
-    margin-left: 200px;
+    margin-left: 90px;
     margin-top: 30px;
+    margin-right: 20px;
     padding: 20px;
     background: #ffffff;
     border-radius: 8px;
@@ -48,9 +49,10 @@ body {
 }
 
 .profile-info h1 {
+    margin: 0;
+    margin-left: 50px;
     font-size: 2em;
     color: #333;
-    margin: 0;
 }
 
 .profile-info .job-title {
@@ -303,3 +305,4 @@ text-decoration: underline;
         width: 100%; /* Makes the cards take full width on smaller screens */
     }
 }
+
